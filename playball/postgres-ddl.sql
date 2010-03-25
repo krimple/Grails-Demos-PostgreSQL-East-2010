@@ -95,7 +95,13 @@ insert into sale (book_id, sale_id, quantity, sale_price)
 select b.title, sum(s.quantity * s.sale_price) amount from sale s, book b
 where s.book_id = b.book_id
 group by b.title;
-  
+
+       insert into bookauthors (book_id, author_id, version)
+       values (
+       (select book_id from book where title like 'The compl%'),
+       (select author_id from author where lastname like 'Shake%'), 1);
+
+
 CREATE OR REPLACE FUNCTION salesByBookId(
     book_id int)
     RETURNS decimal

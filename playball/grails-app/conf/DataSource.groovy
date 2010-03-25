@@ -17,7 +17,7 @@ environments {
 		    username = "postgres"
 		    password = "password"
 		    driverClassName = "org.postgresql.Driver"
-			dbCreate = "none" // one of 'create', 'create-drop','update'
+			dbCreate = "update" // one of 'create', 'create-drop','update'
 			url = "jdbc:postgresql:playball"	
 		}
 	}

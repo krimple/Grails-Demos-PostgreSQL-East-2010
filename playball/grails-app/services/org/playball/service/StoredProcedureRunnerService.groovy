@@ -1,11 +1,8 @@
 package org.playball.service
 
-import groovy.sql.Sql
-import org.springframework.jdbc.object.StoredProcedure
-import javax.sql.DataSource
-import org.springframework.jdbc.core.SqlParameter
 import org.springframework.jdbc.object.SqlFunction
 import org.springframework.jdbc.core.JdbcTemplate
+import org.playball.db.StoredProcSubclass
 
 class StoredProcedureRunnerService {
 
@@ -47,21 +44,5 @@ class StoredProcedureRunnerService {
     // result is in the 'sales by book id' result hash entry, as a list of fields,
     // but only the first field is satisfied (that's the value)
     results["salesbybookid"][0]
-  }
-
-
-  class StoredProcSubclass extends StoredProcedure {
-    public StoredProcSubclass(DataSource ds) {
-      super(ds, "salesByBookId")
-      setFunction true
-      declareParameter(new SqlParameter("book_id", java.sql.Types.INTEGER))
-      compile()
-    }
-
-    public Map execute(Integer bookId) {
-      Map inputs = new HashMap()
-      inputs.put("book_id", bookId)
-      return super.execute(inputs)
-    }
   }
 }

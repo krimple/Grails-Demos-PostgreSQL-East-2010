@@ -1,7 +1,13 @@
 package org.playball.model.mapping
 
-class Collaboration {
+class Collaboration implements Serializable {
 
-    static constraints = {
+    static belongsTo = [author: Author, book: Book]
+
+    static mapping = {
+      table 'bookauthors'
+      id composite: ['author', 'book']
+      author column: 'author_id'
+      book column: 'book_id'
     }
 }

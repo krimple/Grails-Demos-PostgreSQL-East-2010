@@ -3,7 +3,7 @@ package org.playball.model
 class Season {
 
   static constraints = {
-    seasonLabel(size:1..150, blank: false )
+    seasonLabel(blank:false, size:1..30)
     startDate(validator: { value, domain ->
       if (value == null)
          return ["default.null.message"]
@@ -11,7 +11,10 @@ class Season {
         return ["daterangeInvalid", value, domain.endDate]
       }
     })
-    endDate(null: false)
+
+
+
+    endDate(null:false)
   }
 
   static mapping = {
